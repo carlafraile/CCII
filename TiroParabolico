@@ -1,0 +1,49 @@
+
+#Programa para dibujar cinemática de tiro parabólico
+
+#librerias
+from matplotlib import pyplot as plt
+
+#Inputs
+x0 = 0 #m
+v0x = 5 #m/s
+
+y0, v0y = 1.7, 10
+
+g = 9.81 #gravity acceleration
+
+#time
+t0, tf = 0, 2.2 #segundos
+n = 120 #number of divisions
+#Creamos el array de tiempos
+
+times = []
+
+#lo llenamos
+for i in range(n+1):
+    times.append(t0+i*(tf-t0)/n)
+
+#Programa (buscamos el output)
+xout = []
+yout = []
+
+for t in times:
+    x = x0 + v0x * t
+    xout.append(x)
+
+    y = y0 + v0y * t - (1/2) * g * t*t
+    yout.append(y)
+
+fig = plt.figure(figsize=(10,10))
+ax = fig.add_axes([0.1,0.1,0.8,0.8])
+
+ax.plot(xout,yout, color = 'red') #Muestra la trayectoria del proyectil
+ax.set_title('x over y')
+
+ax.plot(times, yout) #Muestra cómo cambia la altura del proyectil a medida que transcurren los segundos
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+
+plt.savefig('/Users/Carla/Desktop/figura1.pdf', format = 'pdf')
+plt.show()
