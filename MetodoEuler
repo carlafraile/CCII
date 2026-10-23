@@ -1,0 +1,33 @@
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definir la función derivada
+def f(t, y):
+    return -2*t*y
+
+# Parámetros
+t0 = 0
+y0 = 1
+h = 0.1
+n_steps = 50
+
+# Inicialización de listas para almacenar los valores
+t_values = [t0]
+y_values = [y0]
+
+# Implementación del método de Euler
+for n in range(n_steps):
+    t_n = t_values[-1]
+    y_n = y_values[-1]
+    y_n1 = y_n + h*f(t_n, y_n)
+
+    t_values.append(t_n + h)
+    y_values.append(y_n1)
+
+# Graficar la solución aproximada
+plt.plot(t_values, y_values, label='Método de Euler')
+plt.xlabel('t')
+plt.ylabel('y')
+plt.legend()
+plt.show()
